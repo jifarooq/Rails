@@ -1,0 +1,40 @@
+<form action=<%= url %> method='post'>
+	<input type="hidden" name="_method" value=<%=http_verb%>>
+	
+	<input type='hidden'
+	 name='authenticity token' 
+	 value=<%=form_authenticity_token%>
+
+<label> Which band recorded the album?
+	<select name="album[band_id]">
+		<% Band.all.each do |band| %>
+			<option 
+				value= <%= band.id %>
+				<%= @album.band_id == band.id ? "selected" : "" %>>
+				<%= band.name %></option>
+		<% end %>
+	</select><br><br>
+</label>
+
+<label>Album Name
+	<input 
+		type="text" 
+		name="album[album_name]" 
+		value=<%=@album.album_name%>><br><br>
+</label>
+
+Album Type: 
+<label>Studio
+	<input type="radio" name="album[kind]" value="Studio"
+	<%= @album.kind == "Regular" ? "checked" : ""%>>
+</label>
+
+<label>Live
+	<input type="radio" name="album[kind]" value="Live"
+	<%= @album.kind == "Bonus" ? "checked" : ""%>>
+</label><br><br>
+
+<input type="submit" value=<%=msg%>>
+
+</form>
+

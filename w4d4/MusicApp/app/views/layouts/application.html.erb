@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- if logged_in? -->
+<!-- show log_out button -->
+<!-- else -->
+<!-- show log in / sign up -->
+
+<% if logged_in? %>
+	<font color = "blue">
+		<%= "#{current_user.email} you are currently logged in"%>
+		<%= button_to "Log out", session_url, method: :delete %>
+	</font>
+<% else %>
+	<%= link_to "Log in", new_session_url%> or 
+	<%= link_to "Sign up", new_user_url%>
+<% end %>
+<br>
+
+<%= yield %>
+
+</body>
+</html>

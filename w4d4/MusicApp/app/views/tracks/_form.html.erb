@@ -1,0 +1,46 @@
+<form action=<%= url %> method="post">
+	<input type="hidden" name="_method" value=<%=http_verb%>>
+	<input type='hidden'
+	 name='authenticity token' 
+	 value=<%=form_authenticity_token%>
+
+<label> Album Name
+	<select name="track[album_id]">
+		<% Album.all.each do |album| %>
+			<option 
+				value= <%= album.id %>
+				<%= @track.album_id == album.id ? "selected" : "" %>>
+				<%= album.album_name %></option>
+		<% end %>
+	</select><br>
+</label>
+
+<label>Track Name
+	<input 
+		type="text" 
+		name="track[track_name]" 
+		value=<%=@track.track_name%>><br>
+</label>
+
+Track Type: 
+<label>Regular
+	<input type="radio" name="track[kind]" value="Regular"
+	<%= @track.kind == "Regular" ? "checked" : ""%>>
+</label>
+
+<label>Bonus
+	<input type="radio" name="track[kind]" value="Bonus"
+	<%= @track.kind == "Bonus" ? "checked" : ""%>>
+</label><br>
+
+<label>Lyrics
+<textarea 
+	name="track[lyrics]" 
+	rows="20" 
+	cols="80"><%=@track.lyrics%></textarea>
+</label>
+
+<input type="submit" value=<%=msg%>>
+
+</form>
+

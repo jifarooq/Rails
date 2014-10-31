@@ -1,0 +1,18 @@
+<h1> <font color = "red">
+	<All of the bands!%> 
+</font></h1>
+
+<table border=1 bgcolor="pink" width=300 height=100 align=center>
+	<th> Band stats </th>
+	<tr>
+		<td>Band Name</td>
+		<td>Number of albums</td>
+	</tr>
+
+	<% @bands.each do |band| %>
+		<tr>
+			<td><%= link_to "#{band.name}", band_url(band) %></td>
+			<td><%= band.albums.count%></td>
+		</tr>
+	<% end %>
+</table>

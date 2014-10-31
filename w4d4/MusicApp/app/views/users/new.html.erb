@@ -1,0 +1,22 @@
+<h1> Sign up as a new user </h1>
+
+<% @user.errors.full_messages.each do |msg| %>
+	<%= msg %>
+<% end %>
+
+<form action=<%= users_url %> method="post">
+	<input type='hidden'
+	 name='authenticity token' 
+	 value=<%=form_authenticity_token%>
+
+	<label>Email
+		<input type="text" name="user[email]">
+	</label>
+
+	<label>Password
+		<input type="password" name="user[password]">
+	</label>
+
+<input type="Submit" value="Sign up!">
+
+</form>
