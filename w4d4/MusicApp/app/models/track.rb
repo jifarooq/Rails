@@ -8,7 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  track_name :string           not null
-#  lyrics     :string
+#  lyrics     :text
 #
 
 class Track < ActiveRecord::Base
@@ -16,5 +16,6 @@ class Track < ActiveRecord::Base
 
 	belongs_to :album
 	has_one :band, through: :album
+	has_many :notes
 	
 end

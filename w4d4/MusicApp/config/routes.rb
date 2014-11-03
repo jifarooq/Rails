@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   	resources :tracks, only: :new
   end
 
-  resources :tracks, except: [:index, :new]
+  #solutions were misleading.
+  #notes should be nested under tracks! (so that params stores track_id?)
+  resources :tracks, except: [:index, :new] do
+    resources :notes, only: :create
+  end
+
+  resources :notes, only: :destroy
 
 end

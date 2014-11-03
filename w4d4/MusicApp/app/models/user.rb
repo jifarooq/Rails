@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 	validates :email, uniqueness: true
 	before_validation :ensure_session_token
 
+	has_many :notes
+
 	def password=(password)
 		@password = password
 		self.password_digest = BCrypt::Password.create(password)
@@ -47,9 +49,7 @@ class User < ActiveRecord::Base
 
 		def self.find_by_credentials(email, password)
 			@user = User.find_by_email(email)
-
 			return nil if @user.nil?
-
 			@user.is_password?(password) ? @user : nil
 		end
 

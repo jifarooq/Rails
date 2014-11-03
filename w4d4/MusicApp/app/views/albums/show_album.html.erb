@@ -1,24 +1,27 @@
-<h1> <font color = "green">
-	<Album page for <%= @album.album_name %> 
-</font></h1>
+<h2> <font color = "green">
+	Album page for <%= @album.album_name %> 
+</font></h2>
 
-<%= link_to "The band that recorded this album", band_url(@album.band_id) %>
+<h4><%= link_to "Go to band (#{@album.band.name})", band_url(@album.band_id) %></h4>
 
 <ul>
-	<% @album.attributes.each do |attr| %>
-		<li>
-			<%= "#{attr.first.capitalize}: #{attr.last}"%><br>
-		</li>
-	<% end %>
+	<li>Recorded in the <%= @album.kind.downcase %></li>
+	<li>Name of the album: <%= @album.album_name %></li>
 </ul>
 
+<h4>Tracks on the album</h4>
+<ol>
+	<% @album.tracks.each do |track| %>
+		<li><%= link_to track.track_name, track_url(track) %></li>
+	<% end %>
+</ol>
 
+<br>
 <%= link_to "Edit album", edit_album_url %>
 <br>
 <%= button_to "Annihilate album", album_url, method: :delete%>
 
-
-<ul>CREATIONISM
+<ul>
 <li><%= link_to "Create track", new_album_track_url(@album.id) %></li>
 <li><%= link_to "Create album", new_band_album_url(@album.band_id) %></li>
 <li><%= link_to "Create band", new_band_url%></li>

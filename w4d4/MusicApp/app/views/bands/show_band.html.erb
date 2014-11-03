@@ -1,16 +1,8 @@
 <h1> <font color = "green">
-	<Band page for <%= @band.name %> 
+	Band page for <%= @band.name %>
 </font></h1>
 
-<ul>
-	<% @band.attributes.each do |attr| %>
-		<li>
-			<%= "#{attr.first.capitalize}: #{attr.last}"%><br>
-		</li>
-	<% end %>
-</ul>
-
-<label>Albums<ul>
+<label><h3>Albums</h3><ul>
 	<% @band.albums.each do |album| %>
 		<li>
 			<%= link_to "#{album.album_name}", album_url(album)%>
@@ -21,13 +13,11 @@
 
 <%= link_to "Edit band", edit_band_url %>
 <br>
-<%= button_to "Annihilate band", band_url, method: :delete%>
-<br>
 <%= link_to "All bands", bands_url %>
 <br><br>
+<%= button_to "Annihilate band", band_url, method: :delete%>
+<br>
 
 
-<ul>CREATE STUFF
 <li><%= link_to "Create album", new_band_album_url(@band.id) %></li>
 <li><%= link_to "Create band", new_band_url%></li>
-</ul>

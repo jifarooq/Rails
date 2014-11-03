@@ -1,15 +1,20 @@
 <h1> Track page for <%= @track.track_name %> </h1>
 
-<%= link_to "Track's Album", album_url(@track.album_id) %>
+<%= link_to "#{@track.album.album_name}", album_url(@track.album_id) %>
 
 <ul>
-	<% @track.attributes.each do |attr| %>
-		<li>
-			<%= "#{attr.first.capitalize}: #{attr.last}"%><br>
-		</li>
-	<% end %>
+	<li>Type of track <%= @track.kind.downcase %></li>
+	<li>Name of the track: <%= @track.track_name %></li>
 </ul>
 
+Lyrics: <%= @track.lyrics %>
+br><br><br>
+
+Write a note!
+<%= render 'notes/form', track: @track %>
+<%= render 'notes/note', track: @track %>
+
+<br><br>
 <%= link_to "Edit track", edit_track_url%>
 <%= button_to "Annihilate track", track_url, method: :delete%>
 <br>
