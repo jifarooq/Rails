@@ -1,0 +1,3 @@
+== README
+
+A superior cat rental request app by requiring a user to be logged in.  User can login from multiple browsers or devices, and log out of them one-by-one.

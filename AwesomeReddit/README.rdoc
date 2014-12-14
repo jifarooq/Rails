@@ -1,0 +1,3 @@
+== README
+
+A clone of Reddit focusing on the basic features
