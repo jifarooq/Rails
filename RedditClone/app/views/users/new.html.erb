@@ -1,0 +1,20 @@
+<h1>Sign up for 'Awesome' (not really) Reddit </h1>
+
+<!-- We want to show username input, password, input, and sign up-->
+<form action="<%= users_url %>" method="post">
+  
+  <input type="hidden" 
+  name="authenticity_token" 
+  value="<%=form_authenticity_token%>">
+  
+  <label>Username
+    <input type="text" name="user[username]">
+  </label><br>
+  
+  <label>Password
+    <input type="password" name="user[password]">
+  </label><br>
+  
+  <input type="Submit" value="Create user!">
+  
+</form>

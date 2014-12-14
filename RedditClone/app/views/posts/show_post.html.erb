@@ -1,0 +1,12 @@
+<h1><%= current_user.username%></h1>
+<h2><%= @post.sub.title %></h2>
+<h3><%= @post.sub.description%></h3>
+
+<%= @post.title %>
+<%= @post.url %>
+<%= @post.content %>
+<br>
+<br>
+<%= link_to "Return to #{@post.sub.title}", sub_url(@post.sub) %><br>
+<%= link_to("Edit post", edit_sub_post_url) if current_user.id == @post.author_id %><br>
+<!--work on posts -->
