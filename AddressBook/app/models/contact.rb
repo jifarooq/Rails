@@ -1,7 +1,9 @@
 class Contact < ActiveRecord::Base
   validates :name, :email, :user_id, presence: true
+  
   # may need to go back to
   validates :user_id, uniqueness: { scope: :email }
+  
   #how to make it so a single user can't have 2 contacts with same email address
   belongs_to :user
   
