@@ -24,11 +24,7 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
   
-  has_many(
-    :posts,
-    through: :subs,
-    source: :posts
-  )
+  has_many :posts, through: :subs, source: :posts
   
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
@@ -49,17 +45,16 @@ class User < ActiveRecord::Base
     SecureRandom::urlsafe_base64(16)
   end
   
+  def reset_session_token!
+    self.session_token = User.generate_session_token
+    self.save!
+    self.session_token
+  end
 
   protected
   
     def ensure_session_token
       self.session_token ||= User.generate_session_token
-    end
-    
-    def reset_session_token!
-      self.session_token = User.generate_session_token
-      self.save!
-      self.session_token
     end
 
 end

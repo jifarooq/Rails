@@ -12,8 +12,6 @@
 class PostSub < ActiveRecord::Base
   validates :post_id, :sub_id, presence: true
   
-  belongs_to :post
-  belongs_to :sub
-  
-  
+  belongs_to :post, inverse_of: :post_sub
+  belongs_to :sub, inverse_of: :post_sub
 end

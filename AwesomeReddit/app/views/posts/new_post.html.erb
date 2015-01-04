@@ -1,28 +1,9 @@
-<!--refactor new & edit into partial -->
 <!-- allow user to select multiple subs via checkboxes -->
-
 <h1> Create post for <%= @post.sub.title unless @post.sub.nil? %> </h1>
 
-<form action="<%= sub_posts_url(@post.sub_id) %>" method="post">
-  
-  <input type="hidden" 
-  name="authenticity_token" 
-  value="<%=form_authenticity_token%>">
-  
-  <label>Title
-    <input type="text" name="post[title]">
-  </label><br>
-  
-  <label>Link
-    <input type="text" name="post[url]">
-  </label><br>
-  
-  <label>Content
-    <textarea name="post[content]" rows="20" cols="80">
-    </textarea>
-  </label><br>
-  
-  <%# fail %>
-  <input type="Submit" value="Create post!">
-  
-</form>
+<%= render 'form',
+    action: sub_posts_url(@post.sub_id),
+    hidden_method: 'POST',
+    post: @post,
+    value: 'Create post'
+%>
