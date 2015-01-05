@@ -1,8 +1,6 @@
-class PostsController < ApplicationController
-  
+class PostsController < ApplicationController  
   def create
     @post = current_user.posts.new(post_params)
-    # fail
 
     if @post.save
       redirect_to post_url(@post)

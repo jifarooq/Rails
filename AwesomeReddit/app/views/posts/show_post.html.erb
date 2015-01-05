@@ -7,8 +7,7 @@
 <% end %>
 
 <%= @post.content %>
-<br>
-<br>
+<br><br>
 
 This post is on these subs:
 <% @post.subs.each do |sub| %>
@@ -17,4 +16,11 @@ This post is on these subs:
 
 <br><br>
 <%= link_to("Edit post", edit_post_url) if current_user.id == @post.user_id %><br>
-<!--work on posts -->
+
+<br><br>
+<% @post.comments.each do |comment| %>
+	<%= "#{comment.user.username} wrote: #{comment.body}" %><br>
+<% end %>
+
+<%= flash[:errors] if flash[:errors] %>
+<%= render 'comments/new', post: @post %>

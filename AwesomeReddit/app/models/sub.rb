@@ -20,9 +20,7 @@ class Sub < ActiveRecord::Base
     primary_key: :id
   )
   
-  # has_many :posts, dependent: :destroy
-   
-  has_many :post_subs, inverse_of: :sub
+  has_many :post_subs, inverse_of: :sub, dependent: :destroy
   has_many :posts, through: :post_subs, source: :post
   
 end

@@ -1,0 +1,14 @@
+<h2>Leave a comment</h2>
+
+<form action="<%= post_comments_url(post) %>" method="POST">
+
+	<input type="hidden" 
+         name="authenticity_token" 
+         value="<%=form_authenticity_token%>">
+
+	<label>Body
+		<input name='comment[body]'>
+	</label>
+
+	<input type='Submit' value='Create comment'>
+</form>
