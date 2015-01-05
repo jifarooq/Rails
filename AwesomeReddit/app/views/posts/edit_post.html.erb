@@ -1,7 +1,7 @@
-<h1> Edit post for <%= @post.sub.title %> </h1>
+<h1> Edit post </h1>
 
 <%= render 'form',
-    action: sub_post_url(@post.sub, @post),
+    action: post_url(@post),
     hidden_method: 'PATCH',
     post: @post,
     value: 'Update post'

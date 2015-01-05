@@ -6,18 +6,26 @@
          value="<%=form_authenticity_token%>">
   
   <label>Title
-    <input type="text" name="post[title]" value=<%= post.title %>>
+    <input type="text" name="post[title]" value='<%= post.title %>'>
   </label><br>
   
   <label>Link
-    <input type="text" name="post[url]" value=<%= post.url %>>
+    <input type="text" name="post[url]" value='<%= post.url %>'>
   </label><br>
   
   <label>Content
     <textarea name="post[content]" rows="20" cols="80"><%= post.content %>
     </textarea>
   </label><br>
+
+  <% Sub.all.each do |sub| %>
+    <label><%= sub.title %>
+      <input type='checkbox' 
+             name='post[sub_ids][]' 
+             value='<%= sub.id %>'
+             <%= "checked" if post.sub_ids.include?(sub.id) %>>
+    </label>
+  <% end %>
     
-  <input type="Submit" value="<%= value %>">
-  
+  <br><br><input type="Submit" value="<%= value %>">
 </form>

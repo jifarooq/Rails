@@ -1,8 +1,8 @@
 <!-- allow user to select multiple subs via checkboxes -->
-<h1> Create post for <%= @post.sub.title unless @post.sub.nil? %> </h1>
+<h1> Create post </h1>
 
 <%= render 'form',
-    action: sub_posts_url(@post.sub_id),
+    action: posts_url,
     hidden_method: 'POST',
     post: @post,
     value: 'Create post'

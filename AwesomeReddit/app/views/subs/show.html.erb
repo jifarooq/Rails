@@ -4,13 +4,13 @@
 
 <ul>
 	<% @sub.posts.each do |post| %>
-		<li><%= link_to post.title, sub_post_url(@sub, post) %></li>
+		<li><%= link_to post.title, post_url(post) %></li>
 	<% end %>
 </ul>
 <br>
 <br>
 
-<%= link_to "Make a post", new_sub_post_url(@sub) %><br><br>
+<%= link_to "Make a post", new_post_url %><br><br>
 <%= link_to "Return to all subs", subs_url %><br>
 <%= link_to("Edit sub", edit_sub_url) if current_user.id == @sub.moderator_id %><br>
 <!--work on posts -->

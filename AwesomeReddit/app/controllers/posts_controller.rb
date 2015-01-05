@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
   
   def create
-    @post = current_sub_posts.new(post_params)
-    @post.author_id = current_user.id
-    @post.sub_id = params[:sub_id]
+    @post = current_user.posts.new(post_params)
+    # fail
 
     if @post.save
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       render :new_post
     end
@@ -14,8 +13,6 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    @post.sub_id = params[:sub_id]
-
     render :new_post
   end
   
@@ -27,7 +24,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     
-    if current_user.id == @post.author_id
+    if current_user.id == @post.user_id
       render :edit_post
     else
       redirect_to sub_post_url(@post)
@@ -38,20 +35,16 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     
     if @post.update(post_params)
-      render :show_post
+      redirect_to post_url(@post)
     else
       render :edit_post
     end
   end
   
   private
-  
-    def current_sub_posts
-      Sub.find_by_id(params[:sub_id]).posts
-    end
-  
     def post_params
-      params.require(:post).permit(:title, :url, :content)
+      params.require(:post).permit(
+        :title, :url, :content, :user_id, sub_ids: []
+      )
     end
-    
 end

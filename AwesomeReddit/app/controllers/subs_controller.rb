@@ -40,8 +40,8 @@ class SubsController < ApplicationController
     @sub = Sub.find(params[:id])
     
     if @sub.update(sub_params)
-      # redirect_to sub_url(@sub)
-      render :show
+      redirect_to sub_url(@sub)
+      # render :show
     else
       render :edit
     end

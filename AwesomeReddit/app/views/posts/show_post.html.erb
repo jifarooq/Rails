@@ -1,8 +1,6 @@
-<h1>Hello <%= current_user.username %></h1>
-<h2><%= @post.sub.title %></h2>
-<h3><%= @post.sub.description %></h3>
+<h2>Hello <%= current_user.username %></h2>
 
-<h4><%= @post.title %></h4>
+<h3><%= @post.title %></h3>
 
 <% if @post.url!='none' %>
 	<a href='<%= @post.url %>'>More info</a> <br>
@@ -12,6 +10,11 @@
 <br>
 <br>
 
-<%= link_to "Return to #{@post.sub.title}", sub_url(@post.sub) %><br>
-<%= link_to("Edit post", edit_sub_post_url) if current_user.id == @post.author_id %><br>
+This post is on these subs:
+<% @post.subs.each do |sub| %>
+	&nbsp;<%= link_to sub.title, sub_url(sub) %><br>
+<% end %>
+
+<br><br>
+<%= link_to("Edit post", edit_post_url) if current_user.id == @post.user_id %><br>
 <!--work on posts -->

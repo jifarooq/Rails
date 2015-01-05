@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
     :subs,
     class_name: "Sub",
     foreign_key: :moderator_id,
-    primary_key: :id
+    inverse_of: :moderator
   )
   
-  has_many :posts, through: :subs, source: :posts
+  has_many :posts, inverse_of: :author
   
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
