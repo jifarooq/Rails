@@ -19,8 +19,12 @@ This post is on these subs:
 
 <br><br>
 <% @post.comments.each do |comment| %>
-	<%= "#{comment.user.username} wrote: #{comment.body}" %><br>
+	<span style='font-family: verdana;'>
+		<%= "#{comment.user.username} says: #{comment.body}" %><br>
+	</span>
 <% end %>
 
-<%= flash[:errors] if flash[:errors] %>
-<%= render 'comments/new', post: @post %>
+<span style='font-weight: bold;'>
+	<br>
+	<%= link_to 'Leave a comment', new_post_comment_url(@post) %>
+</span>
