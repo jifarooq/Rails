@@ -14,13 +14,15 @@ This post is on these subs:
 	&nbsp;<%= link_to sub.title, sub_url(sub) %><br>
 <% end %>
 
-<br><br>
+<br>
 <%= link_to("Edit post", edit_post_url) if current_user.id == @post.user_id %><br>
 
-<br><br>
-<% @post.comments.each do |comment| %>
+<br>
+<% @post.parent_comments.each do |comment| %>
 	<span style='font-family: verdana;'>
-		<%= "#{comment.user.username} says: #{comment.body}" %><br>
+		<%= "#{comment.user.username} says: #{comment.body}" %>
+		<%= link_to '...', comment_url(comment) %>
+		<br>
 	</span>
 <% end %>
 

@@ -1,0 +1,20 @@
+%h1 Comment show page
+
+%h2="#{@comment.user.username} says: #{@comment.body}"
+
+-@comment.child_comments.each do |child_comment|
+	="#{child_comment.user.username} replied: #{child_comment.body}"
+	%br
+
+%form{action: comments_url, method: "POST"}
+
+	%input{type: "hidden", name: "authenticity_token", value: form_authenticity_token}
+
+	%label Body
+	%input{name: 'new_comment[body]'}
+
+	%input{type: 'hidden', name: 'new_comment[post_id]', value: @comment.post_id}
+
+	%input{type: 'hidden', name: 'new_comment[parent_comment_id]', value: @comment.id}
+
+	%input{type: 'Submit', value: 'Create comment'}

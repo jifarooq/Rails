@@ -26,4 +26,7 @@ class Post < ActiveRecord::Base
 
   has_many :comments, inverse_of: :post
   
+  def parent_comments
+    comments.where(parent_comment_id: nil)
+  end
 end

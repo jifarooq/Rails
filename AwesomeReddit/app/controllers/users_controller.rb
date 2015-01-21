@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   #this is /users, done in haml!
   def index
     @users = User.all
-    render :index
   end
   
   private
