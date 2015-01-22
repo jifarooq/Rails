@@ -14,6 +14,11 @@
 
 class Vote < ActiveRecord::Base
 	validates :user, presence: true
+
+	# polymorphic assns: use -two- columns (id, type) 
+	# to create -many- associations
+	# polymorphic => changeable type
+	
 	# prevents user from voting twice
 	validates :user_id, uniqueness: { scope: [:votable_id, :votable_type] }
 

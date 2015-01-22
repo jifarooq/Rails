@@ -11,19 +11,17 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    render :new_post
   end
   
   def show 
     @post = Post.find(params[:id])
-    render :show_post
   end
 
   def edit
     @post = Post.find(params[:id])
     
     if current_user.id == @post.user_id
-      render :edit_post
+      render :edit
     else
       redirect_to sub_post_url(@post)
     end
@@ -52,16 +50,16 @@ class PostsController < ApplicationController
     # custom action!
     def vote(direction)
       @post = Post.find(params[:id])
-      @vote = Vote.find_by(
-        votable_id: @post.id, votable_type: "Post", user_id: current_user.id
-      )
+      criteria = { user_id: current_user.id,
+                   votable_id: @post.id, 
+                   votable_type: "Post" }
+      @vote = Vote.find_by(criteria)
 
       if @vote
         @vote.update(value: direction)
       else
-        @post.votes.create!(
-          user_id: current_user.id, value: direction, post_id: @post.id
-        )
+        criteria[:value] = direction
+        @post.votes.create!(criteria)
       end
 
       redirect_to post_url(@post)
