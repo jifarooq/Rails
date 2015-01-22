@@ -10,7 +10,10 @@
 <br>
 <br>
 
-<%= link_to "Make a post", new_post_url %><br><br>
-<%= link_to "Return to all subs", subs_url %><br>
+<%= button_to 'Upvote', upvote_sub_url(@sub) %>
+<%= button_to 'Downvote', downvote_sub_url(@sub) %>
+
+<%= link_to "New post", new_post_url %><br>
 <%= link_to("Edit sub", edit_sub_url) if current_user.id == @sub.moderator_id %><br>
+<%= link_to "Back to all subs", subs_url %><br>
 <!--work on posts -->

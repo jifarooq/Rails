@@ -17,6 +17,8 @@ class Comment < ActiveRecord::Base
 	belongs_to :post, inverse_of: :comments
 	belongs_to :user, inverse_of: :comments #author
 
+	has_many :votes, as: :votable, class_name: 'Vote'
+
 	has_many :child_comments, 
 		class_name: 'Comment',
 		foreign_key: :parent_comment_id

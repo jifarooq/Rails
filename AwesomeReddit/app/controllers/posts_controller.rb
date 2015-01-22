@@ -38,11 +38,32 @@ class PostsController < ApplicationController
       render :edit_post
     end
   end
+
+  def downvote; vote(-1); end
+  def upvote; vote(1); end
   
   private
     def post_params
       params.require(:post).permit(
         :title, :url, :content, :user_id, sub_ids: []
       )
+    end
+
+    # custom action!
+    def vote(direction)
+      @post = Post.find(params[:id])
+      @vote = Vote.find_by(
+        votable_id: @post.id, votable_type: "Post", user_id: current_user.id
+      )
+
+      if @vote
+        @vote.update(value: direction)
+      else
+        @post.votes.create!(
+          user_id: current_user.id, value: direction, post_id: @post.id
+        )
+      end
+
+      redirect_to post_url(@post)
     end
 end

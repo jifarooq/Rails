@@ -23,10 +23,15 @@ class Post < ActiveRecord::Base
   
   has_many :post_subs, inverse_of: :post
   has_many :subs, through: :post_subs, source: :sub
-
   has_many :comments, inverse_of: :post
+
+  has_many :votes, as: :votable, class_name: 'Vote'
   
   def parent_comments
     comments.where(parent_comment_id: nil)
+  end
+
+  def vote_count
+    votes.sum(:value)
   end
 end

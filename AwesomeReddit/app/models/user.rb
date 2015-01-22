@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   
   has_many :posts, inverse_of: :author
   has_many :comments, inverse_of: :user
+  has_many :votes, inverse_of: :user
   
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)

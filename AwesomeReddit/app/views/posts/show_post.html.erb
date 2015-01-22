@@ -1,6 +1,9 @@
 <h2>Hello <%= current_user.username %></h2>
 
-<h3><%= @post.title %></h3>
+<h3><%="#{@post.title} (#{@post.vote_count})"%></h3>
+
+<%= button_to 'Upvote', upvote_post_url(@post) %>
+<%= button_to 'Downvote', downvote_post_url(@post) %>
 
 <% if @post.url!='none' %>
 	<a href='<%= @post.url %>'>More info</a> <br>
