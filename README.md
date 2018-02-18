@@ -1,4 +1,4 @@
-#Rails Projects
+# Rails Projects
 
 - AddressBook for organizing contacts
 - Basic cat rental request app
